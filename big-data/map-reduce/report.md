@@ -88,8 +88,9 @@ function (_, values) {
 }
 ```
 
+### result
+
 ```js
-// result
 > Purchase by Gender:
 >> Female:
         total:          1164624021.0
@@ -101,3 +102,8 @@ function (_, values) {
         avg by order:   9504.771712960679
         avg by user:    350276759.72727275
 ```
+
+### conclusion
+
+- mongoDB предоставляет удобный интерфейс для выполнения `MapReduce` подсчётов.
+- JavaScript функции предоставляют гибкость и возможность писать кастомные обработчики для достижения нужного результата.

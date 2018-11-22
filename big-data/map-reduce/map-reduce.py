@@ -6,11 +6,6 @@ from pprint import pprint
 from init import connect
 
 orders = connect()
-sumReducer = Code("""
-    function (_, values) {
-        return Array.sum(values);
-    }
-""")
 
 def purchase_by_gender():
     mapper = Code("""
