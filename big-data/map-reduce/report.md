@@ -63,19 +63,41 @@ if __name__ == "__main__":
 ```js
 // mapper
 function () {
-    emit(this.Gender, this.Purchase);
+    emit(this.Gender, {
+        purchase: this.Purchase,
+        id: this.User_ID,
+        count: 1
+    });
 }
 ```
 
 ```js
 // reducer
 function (_, values) {
-    return Array.sum(values);
+    var idsDict = {};
+
+    function red (acc, item) {
+        acc.purchase += item.purchase;
+        acc.count += item.count;
+        idsDict[item.id] = true;
+        return acc;
+    }
+    var result = values.reduce(red, { count: 0, purchase: 0 });
+    result.unique = Object.keys(idsDict).length;
+    return result;
 }
 ```
 
 ```js
 // result
-{'_id': 'F', 'value': 1164624021.0}
-{'_id': 'M', 'value': 3853044357.0}
+> Purchase by Gender:
+>> Female:
+        total:          1164624021.0
+        avg by order:   8809.761348593387
+        avg by user:    388208007.0
+
+>> Male:
+        total:          3853044357.0
+        avg by order:   9504.771712960679
+        avg by user:    350276759.72727275
 ```
