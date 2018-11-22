@@ -2,12 +2,14 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"net"
 )
 
 func handleConnection(conn net.Conn, store *storage) {
 	name, ip := store.Save(conn)
 	log.info("new connection - %s (%s)", name, ip)
+	sendMessage(conn, fmt.Sprintf("Hello, %s!", name), SYSTEM)
 
 	scanner := bufio.NewScanner(conn)
 	for {
@@ -16,7 +18,7 @@ func handleConnection(conn net.Conn, store *storage) {
 			break
 		}
 	}
-	log.info("%s disconnected.", name)
+	log.info("%s disconnected", name)
 	store.Remove(name)
 }
 
