@@ -17,6 +17,20 @@ func handleConnection(conn net.Conn, store *storage) {
 		if !ok {
 			break
 		}
+		action := getAction(scanner.Bytes())
+		switch action.Type {
+		case CLIENTS_REQUEST:
+			clients := store.GetNames(name)
+			log.info("%s requested clients: %q", name, clients)
+			send(conn, stringify(makeAction(CLIENTS_RESPONSE, clients, SYSTEM)))
+		case MESSAGE_REQUEST:
+			toConn := store.GetConnection(action.To)
+			message := action.Payload.(string)
+			sendMessage(toConn, message, name)
+			log.info("%s -> %s: %s", name, action.To, message)
+		default:
+			log.warning("unexpected request action type: %s", action.Type)
+		}
 	}
 	log.info("%s disconnected", name)
 	store.Remove(name)

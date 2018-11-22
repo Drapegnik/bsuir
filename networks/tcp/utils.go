@@ -15,6 +15,10 @@ func print(level string, format string, a ...interface{}) {
 
 func printMessage(action *Action) {
 	fmt.Printf("> (%s): %s\n", action.Author, action.Payload)
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
 }
 
 type logger struct {

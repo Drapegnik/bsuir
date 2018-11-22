@@ -9,9 +9,11 @@ type actionType string
 
 const (
 	// SYSTEM username
-	SYSTEM string = "@system"
-	// MESSAGE action
-	MESSAGE actionType = "MESSAGE"
+	SYSTEM           string     = "@system"
+	MESSAGE          actionType = "MESSAGE"
+	MESSAGE_REQUEST  actionType = "MESSAGE_REQUEST"
+	CLIENTS_REQUEST  actionType = "CLIENTS_REQUEST"
+	CLIENTS_RESPONSE actionType = "CLIENTS_RESPONSE"
 )
 
 // Action is serializable communication message format
@@ -19,6 +21,7 @@ type Action struct {
 	Type    actionType  `json:"type"`
 	Payload interface{} `json:"payload"`
 	Author  string      `json:"author"`
+	To      string      `json:"to"`
 }
 
 func makeAction(aType actionType, payload interface{}, author string) *Action {
@@ -27,6 +30,10 @@ func makeAction(aType actionType, payload interface{}, author string) *Action {
 		Payload: payload,
 		Author:  author,
 	}
+}
+
+func makeRequestAction(aType actionType, payload interface{}, to string) *Action {
+	return &Action{Type: aType, Payload: payload, To: to}
 }
 
 func stringify(v interface{}) string {

@@ -33,6 +33,21 @@ func (s *storage) GetConnection(name string) net.Conn {
 	return s.connByName[name]
 }
 
+func (s *storage) GetNames(name string) []string {
+	s.mux.Lock()
+	names := make([]string, len(s.connByName)-1)
+	i := 0
+	for n := range s.connByName {
+		if n == name {
+			continue
+		}
+		names[i] = n
+		i++
+	}
+	s.mux.Unlock()
+	return names
+}
+
 func (s *storage) Remove(name string) {
 	s.mux.Lock()
 	delete(s.connByName, name)
