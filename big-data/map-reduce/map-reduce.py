@@ -1,11 +1,27 @@
 #!/usr/bin/env python3
 
+import matplotlib.pyplot as plt
+
 from bson.code import Code
 from pprint import pprint
 
 from init import connect
 
 orders = connect()
+labels = []
+
+def log(legend, label, value):
+    print(f'\t{legend}:\t\t{value}')
+
+def draw(legend, data):
+    labels_ = []
+    for i, item in enumerate(data):
+        labels_.append(f'{labels[i]} ({item})')
+
+    plt.clf()
+    plt.pie(data, labels=labels_, colors=['lightcoral', 'lightskyblue'], autopct='%1.1f%%')
+    filename = legend.replace(' ', '-')
+    plt.savefig(f'images/{filename}.png')
 
 def purchase_by_gender():
     mapper = Code("""
@@ -40,17 +56,34 @@ def purchase_by_gender():
 
     result = orders.map_reduce(mapper, reducer, 'purchase-by-gender')
     print('> Purchase by Gender:')
+    users = []
+    totals = []
+    avgs_by_order = []
+    avgs_by_user = []
+
     for doc in result.find():
-        print('>>', 'Male:' if doc['_id'] == 'M' else 'Female:')
+        label = 'Male' if doc['_id'] == 'M' else 'Female'
+        labels.append(label)
         value = doc['value']
         unique = len(value['idsDict'])
         purchase = int(value['purchase'])
         avg_by_order = int(purchase / value['count'])
         avg_by_user = int(purchase / unique)
 
-        print(f'\tunique users:\t{unique}')
-        print(f'\ttotal purchase:\t{purchase}')
-        print(f'\tavg by order:\t{avg_by_order}')
-        print(f'\tavg by user:\t{avg_by_user}')
+        users.append(unique)
+        totals.append(purchase)
+        avgs_by_order.append(avg_by_order)
+        avgs_by_user.append(avg_by_user)
+
+        print(f'>> {label}:')
+        log('unique users', label, unique)
+        log('total purchase', label, purchase)
+        log('avg by order', label, avg_by_order)
+        log('avg by user', label, avg_by_user)
+
+    draw('users', users)
+    draw('total purchase', totals)
+    draw('avg by order', avgs_by_order)
+    draw('avg by user', avgs_by_user)
 
 purchase_by_gender()
