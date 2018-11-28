@@ -97,23 +97,23 @@ function (_, values) {
 
 ### result
 
-### users
+#### users
 
 ![](images/users.png)
 
-### total purchases
+#### total purchases
 
 ![](images/total-purchase.png)
 
-### average purchase by user
+#### average purchase by user
 
 ![](images/avg-by-user.png)
 
-### average purchase by order
+#### average purchase by order
 
 ![](images/avg-by-order.png)
 
-### output
+#### output
 
 ```js
 > Purchase by Gender:
