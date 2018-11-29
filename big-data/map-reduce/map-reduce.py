@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 from bson.code import Code
 from pprint import pprint
+from time import time
 
 from init import connect
 
@@ -54,7 +55,9 @@ def purchase_by_gender():
         }
     """)
 
+    start_time = time()
     result = orders.map_reduce(mapper, reducer, 'purchase-by-gender')
+    elapsed_time = time() - start_time
     print('> Purchase by Gender:')
     users = []
     totals = []
@@ -81,6 +84,7 @@ def purchase_by_gender():
         log('avg by order', label, avg_by_order)
         log('avg by user', label, avg_by_user)
 
+    print(f'> Elapsed Time:\t{elapsed_time:.2f}s')
     draw('users', users)
     draw('total purchase', totals)
     draw('avg by order', avgs_by_order)

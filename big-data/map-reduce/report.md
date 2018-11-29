@@ -127,6 +127,7 @@ function (_, values) {
         total purchase: 3853044357
         avg by order:   9504
         avg by user:    911963
+> Elapsed Time: 25.77s
 ```
 
 ### conclusion
