@@ -11,6 +11,9 @@ from init import connect
 orders = connect()
 labels = []
 
+mapper_func = open('mapper.js', 'r').read()
+reducer_func = open('reducer.js', 'r').read()
+
 def log(legend, label, value):
     print(f'\t{legend}:\t\t{value}')
 
@@ -25,35 +28,8 @@ def draw(legend, data):
     plt.savefig(f'images/{filename}.png')
 
 def purchase_by_gender():
-    mapper = Code("""
-        function () {
-            emit(this.Gender, {
-                purchase: this.Purchase,
-                id: this.User_ID,
-                count: 1
-            });
-        }
-    """)
-
-    reducer = Code("""
-        function (_, values) {
-            var idsDict = {};
-
-            function red (acc, item) {
-                acc.purchase += item.purchase;
-                acc.count += item.count;
-                if (item.id) {
-                    idsDict[item.id] = true;
-                } else {
-                    idsDict = Object.assign(idsDict, item.idsDict)
-                }
-                return acc;
-            }
-            var result = values.reduce(red, { count: 0, purchase: 0 });
-            result.idsDict = idsDict;
-            return result;
-        }
-    """)
+    mapper = Code(mapper_func)
+    reducer = Code(reducer_func)
 
     start_time = time()
     result = orders.map_reduce(mapper, reducer, 'purchase-by-gender')

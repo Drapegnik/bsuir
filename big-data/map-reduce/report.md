@@ -61,37 +61,35 @@ if __name__ == "__main__":
 - Например вот так можно посчитать общее число покупок в зависимости от пола клиента:
 
 ```js
-// mapper
-function () {
-    emit(this.Gender, {
-        purchase: this.Purchase,
-        id: this.User_ID,
-        count: 1
-    });
+function mapper() {
+  emit(this.Gender, {
+    purchase: this.Purchase,
+    id: this.User_ID,
+    count: 1
+  });
 }
 ```
 
 - **warning**: `reducer` должен быть композируемым, те `values` может быть предыдущим результатом выполнения редюсера для этого ключа и значения надо смержить
 
 ```js
-// reducer
-function (_, values) {
-    var idsDict = {};
+function reducer(_, values) {
+  var idsDict = {};
 
-    function red (acc, item) {
-        acc.purchase += item.purchase;
-        acc.count += item.count;
-        // Gotcha: http://bit.ly/2Sohea7
-        if (item.id) {
-            idsDict[item.id] = true;
-        } else {
-            idsDict = Object.assign(idsDict, item.idsDict)
-        }
-        return acc;
+  function red(acc, item) {
+    acc.purchase += item.purchase;
+    acc.count += item.count;
+    // Gotcha: http://bit.ly/2Sohea7
+    if (item.id) {
+      idsDict[item.id] = true;
+    } else {
+      idsDict = Object.assign(idsDict, item.idsDict);
     }
-    var result = values.reduce(red, { count: 0, purchase: 0 });
-    result.idsDict = idsDict;
-    return result;
+    return acc;
+  }
+  var result = values.reduce(red, { count: 0, purchase: 0 });
+  result.idsDict = idsDict;
+  return result;
 }
 ```
 
@@ -115,7 +113,7 @@ function (_, values) {
 
 #### output
 
-```js
+```py
 > Purchase by Gender:
 >> Female:
         unique users:   1666
@@ -127,7 +125,7 @@ function (_, values) {
         total purchase: 3853044357
         avg by order:   9504
         avg by user:    911963
-> Elapsed Time: 25.77s
+> Elapsed Time: 25.77 s
 ```
 
 ### conclusion
