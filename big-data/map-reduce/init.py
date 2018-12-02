@@ -7,10 +7,10 @@ from pymongo import MongoClient
 
 FILE_PATH = os.path.join(os.path.dirname(__file__), 'data/BlackFriday.csv')
 
-def connect():
+def connect(name = 'orders'):
     client = MongoClient()
     db=client['black-friday']
-    collection = db['orders']
+    collection = db[name]
     return collection
 
 if __name__ == "__main__":

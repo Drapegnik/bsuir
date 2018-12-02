@@ -25,11 +25,15 @@ def purchase_by_gender():
             function red (acc, item) {
                 acc.purchase += item.purchase;
                 acc.count += item.count;
-                idsDict[item.id] = true;
+                if (item.id) {
+                    idsDict[item.id] = true;
+                } else {
+                    idsDict = Object.assign(idsDict, item.idsDict)
+                }
                 return acc;
             }
             var result = values.reduce(red, { count: 0, purchase: 0 });
-            result.unique = Object.keys(idsDict).length;
+            result.idsDict = idsDict;
             return result;
         }
     """)
@@ -39,11 +43,13 @@ def purchase_by_gender():
     for doc in result.find():
         print('>>', 'Male:' if doc['_id'] == 'M' else 'Female:')
         value = doc['value']
-        purchase = value['purchase']
-        avg_by_order = purchase / value['count']
-        avg_by_user = purchase / value['unique']
+        unique = len(value['idsDict'])
+        purchase = int(value['purchase'])
+        avg_by_order = int(purchase / value['count'])
+        avg_by_user = int(purchase / unique)
 
-        print(f'\ttotal:\t\t{purchase}')
+        print(f'\tunique users:\t{unique}')
+        print(f'\ttotal purchase:\t{purchase}')
         print(f'\tavg by order:\t{avg_by_order}')
         print(f'\tavg by user:\t{avg_by_user}')
 

@@ -71,6 +71,8 @@ function () {
 }
 ```
 
+- **warning**: `reducer` должен быть композируемым, те `values` может быть предыдущим результатом выполнения редюсера для этого ключа и значения надо смержить
+
 ```js
 // reducer
 function (_, values) {
@@ -79,11 +81,16 @@ function (_, values) {
     function red (acc, item) {
         acc.purchase += item.purchase;
         acc.count += item.count;
-        idsDict[item.id] = true;
+        // Gotcha: http://bit.ly/2Sohea7
+        if (item.id) {
+            idsDict[item.id] = true;
+        } else {
+            idsDict = Object.assign(idsDict, item.idsDict)
+        }
         return acc;
     }
     var result = values.reduce(red, { count: 0, purchase: 0 });
-    result.unique = Object.keys(idsDict).length;
+    result.idsDict = idsDict;
     return result;
 }
 ```
@@ -93,14 +100,15 @@ function (_, values) {
 ```js
 > Purchase by Gender:
 >> Female:
-        total:          1164624021.0
-        avg by order:   8809.761348593387
-        avg by user:    388208007.0
-
+        unique users:   1666
+        total purchase: 1164624021
+        avg by order:   8809
+        avg by user:    699054
 >> Male:
-        total:          3853044357.0
-        avg by order:   9504.771712960679
-        avg by user:    350276759.72727275
+        unique users:   4225
+        total purchase: 3853044357
+        avg by order:   9504
+        avg by user:    911963
 ```
 
 ### conclusion
