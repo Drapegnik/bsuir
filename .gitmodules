@@ -1,0 +1,3 @@
+[submodule "dsp/lab2"]
+	path = dsp/lab2
+	url = https://github.com/Drapegnik/what-the-signal
