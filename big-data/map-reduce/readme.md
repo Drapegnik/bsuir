@@ -1,6 +1,6 @@
 # map-reduce
 
-big data course assignment
+> Технологическая платформа по управлению большими данными (ТПпУБД)
 
 ## task
 

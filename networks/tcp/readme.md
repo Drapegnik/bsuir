@@ -2,6 +2,8 @@
 
 Использование сетевых ресурсов: сервер сообщений
 
+> Сетевые технологии обработки данных (СТОД)
+
 ## task
 
 ### server
@@ -20,9 +22,9 @@
 ## setup & run
 
 1. install [golang](https://golang.org/doc/install)
-3. `sh setup.sh`
-4. run server with `./run-server.sh`
-5. run clients with `./run-client.sh`
+2. `sh setup.sh`
+3. run server with `./run-server.sh`
+4. run clients with `./run-client.sh`
 
 ## solution
 
@@ -34,12 +36,14 @@
 
 [![Image from Gyazo](https://i.gyazo.com/7d2bf36b285b3b527f5d047c3245dbc7.gif)](https://gyazo.com/7d2bf36b285b3b527f5d047c3245dbc7)
 
-- to verify that `server.go` serves multiple TCP clients 
+- to verify that `server.go` serves multiple TCP clients
+
 ```bash
 $ netstat -anp TCP | grep 8000
 ```
 
 - to test with `nc`:
+
 ```bash
 $ nc localhost 8000
 {"type": "ping", "payload": "hello"}
