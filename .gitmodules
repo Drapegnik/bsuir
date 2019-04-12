@@ -1,3 +1,6 @@
 [submodule "dsp/lab2"]
 	path = dsp/lab2
 	url = https://github.com/Drapegnik/what-the-signal
+[submodule "oop/oop-paint"]
+	path = oop/oop-paint
+	url = https://github.com/Drapegnik/oop-paint.git

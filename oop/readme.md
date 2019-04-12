@@ -2,6 +2,14 @@
 
 > Перспективные технологии объектно-ориентированного программирования (ПТООП)
 
+- [@Drapegnik/oop-paint](https://github.com/Drapegnik/oop-paint)
+- [@vanashimko/shapes-drawer](https://github.com/vanashimko/shapes-drawer)
+- [@vanashimko/employees-list-editor](https://github.com/vanashimko/employees-list-editor)
+- [@MinchukSergei/PTOOP](https://github.com/MinchukSergei/PTOOP)
+- [@pavel-ulasavets/magistracy-ptoop](https://github.com/pavel-ulasavets/magistracy-ptoop)
+- [@zzhukanton/PTOOP](https://github.com/zzhukanton/PTOOP)
+- [@demidov91/university-oop-geometry](https://github.com/demidov91/university-oop-geometry)
+
 ## tasks
 
 ### 1. Ознакомление с концепциями ООП: наследование и полиморфизм типов (виртуальные методы)
