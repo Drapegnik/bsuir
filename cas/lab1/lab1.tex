@@ -1,0 +1,247 @@
+%% Created by Maple 18.00, Windows 7
+%% Source Worksheet: lab1.mw
+%% Generated: Thu Sep 05 12:33:55 VET 2019
+\documentclass{article}
+\usepackage{maplestd2e}
+\def\emptyline{\vspace{12pt}}
+\begin{document}
+\pagestyle{empty}
+\DefineParaStyle{Maple Heading 1}
+\DefineParaStyle{Maple Text Output}
+\DefineParaStyle{Maple Dash Item}
+\DefineParaStyle{Maple Bullet Item}
+\DefineParaStyle{Maple Normal}
+\DefineParaStyle{Maple Heading 4}
+\DefineParaStyle{Maple Heading 3}
+\DefineParaStyle{Maple Heading 2}
+\DefineParaStyle{Maple Warning}
+\DefineParaStyle{Maple Title}
+\DefineParaStyle{Maple Error}
+\DefineCharStyle{Maple Hyperlink}
+\DefineCharStyle{Maple 2D Math}
+\DefineCharStyle{Maple Maple Input}
+\DefineCharStyle{Maple 2D Output}
+\DefineCharStyle{Maple 2D Input}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{simplify((x^4+x^3-7*x^2-x+6)*(x^3-2*x^2-15*x)/((5*x^4+10*x^3-100*x^2-330*x-225)*(x^2-3*x+2)))}{\[{\it simplify} \left( {\frac { \left( {x}^{4}+{x}^{3}-7\,{x}^{2}-x+6 \right)  \left( {x}^{3}-2\,{x}^{2}-15\,x \right) }{ \left( 5\,{x}^{4}+10\,{x}^{3}-100\,{x}^{2}-330\,x-225 \right) \\
+\mbox{} \left( {x}^{2}-3\,x+2 \right) }} \right) \]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{(1/5)*x}{\[\displaystyle x/5\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{expand((2*x-7)*(5*x^2+6)*(3*x+4))}{\[{\it expand} \left(  \left( 2\,x-7 \right)  \left( 5\,{x}^{2}+6 \right)  \left( 3\,x+4 \right)  \right) \]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{30*x^4-65*x^3-104*x^2-78*x-168}{\[\displaystyle 30\,{x}^{4}-65\,{x}^{3}-104\,{x}^{2}-78\,x-168\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{factor(x^4+6*x^3+4*x^2-30*x-45)}{\[{\it factor} \left( {x}^{4}+6\,{x}^{3}+4\,{x}^{2}-30\,x-45 \right) \]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{(x^2-5)*(x+3)^2}{\[\displaystyle  \left( {x}^{2}-5 \right)  \left( x+3 \right) ^{2}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{f := 6*x^5+15*x^4-372*x^3-771*x^2-120*x-300; -1}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{fsolve(f)}{\[{\it fsolve} \left( f \right) \]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{-8.183012760, -2.074913207, 7.729437086}{\[\displaystyle - 8.183012760,\,- 2.074913207,\, 7.729437086\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{plot(f); 1; plot(f, x = -5 .. 0)}{\[\]}
+\end{mapleinput}
+\mapleresult
+\mapleplot{lab1plot2d1.eps}
+\mapleresult
+\mapleplot{lab1plot2d2.eps}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{convert((3*x^4+4*x^3+5*x-4)/((x^2+2)*(x-3)), parfrac)}{\[{\it convert} \left( {\frac {3\,{x}^{4}+4\,{x}^{3}+5\,x-4}{ \left( {x}^{2}+2 \right)  \left( x-3 \right) }},{\it parfrac}\\
+\mbox{} \right) \]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{3*x+13+(1/11)*(x-30)/(x^2+2)+362/(11*(x-3))}{\[\displaystyle 3\,x+13+1/11\,{\frac {x-30}{{x}^{2}+2}}+362\, \left( 11\,x-33 \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{plot([ln(x-3)^2, 3*sin(3*x)-1.5], x = Pi .. 2*Pi, y = 0 .. 1)}{\[{\it plot} \left( [ \left( \ln  \left( x-3 \right)  \right) ^{2},3\,\sin \left( 3\,x \right) - 1.5],x={\pi \\
+\mbox{}\ldots 2\,\pi \\
+\mbox{}},y={0\ldots 1}\\
+\mbox{} \right) \]}
+\end{mapleinput}
+\mapleresult
+\mapleplot{lab1plot2d3.eps}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{an := (4*n-1)/(3*n-1); -1}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{limit(an, n = infinity)}{\[\lim _{n\rightarrow \infty }{\it an}\]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{4/3}{\[\displaystyle 4/3\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{plot([an, 4/3], n = 0 .. 3, y = 4/3-.1 .. 4/3+.1)}{\[{\it plot} \left( [{\it an},4/3],n={0\ldots 3},y={ 1.233333333\\
+\mbox{}\ldots  1.433333333}\\
+\mbox{} \right) \]}
+\end{mapleinput}
+\mapleresult
+\mapleplot{lab1plot2d4.eps}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{limit(sqrt(n*(n+5))-n, n = infinity)}{\[\lim _{n\rightarrow \infty } \sqrt{n \left( n+5 \right) }-n\]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{5/2}{\[\displaystyle 5/2\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{limit((2*n^2+5*n+7)/(2*n^2+5*n+3), n = infinity)}{\[\lim _{n\rightarrow \infty }{\frac {2\,{n}^{2}+5\,n+7}{2\,{n}^{2}+5\,n+3}}\]}
+\end{mapleinput}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{1}{\[\displaystyle 1\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\begin{maplegroup}
+\begin{mapleinput}
+\mapleinline{active}{2d}{}{\[\]}
+\end{mapleinput}
+\end{maplegroup}
+\end{document}
