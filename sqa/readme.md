@@ -11,3 +11,22 @@
 4. Сделать нагрузочное тестирование - послать миллионы запросов и наблюдать за выполнением. Собрать в удобном для анализа метрики производительности.
 5. Сделать `load balancing` нативными средствами **AWS**.
 6. Повторить нагрузочный тест и проанализироваьт результаты
+
+## dev
+
+- `make test`
+- `make zip`
+
+```bash
+curl -X POST https://fkjl4ua0b7.execute-api.us-east-1.amazonaws.com/default/calculator \
+-H "Content-Type: application/json" \
+-d @- << EOF
+{
+  "op": "+",
+  "a": [1, 2, 3],
+  "b": [3, 2, 1]
+}
+EOF
+
+# -> {"result": [4, 4, 4]}
+```
