@@ -25,6 +25,5 @@
 - [**СКА** (_Системы компьютерной алгебры_)](https://github.com/Drapegnik/bsuir/tree/master/cas)
 - [**ИАИ** (_Интеллектуальный анализ информации_)](https://github.com/Drapegnik/bsuir/tree/master/data-mining)
 - **ГиЭВ** (_Генетические и эволюционные вычисления_)
-- **ОКПО** (_Обеспечение качества программного обеспечения_)
-- [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml)
 - [**ОКПО** (_Обеспечение качества программного обеспечения_)](https://github.com/Drapegnik/bsuir/tree/master/sqa)
+- [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml)
