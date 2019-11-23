@@ -6,3 +6,4 @@
 
 - [lab1](/ml/lab1)
 - [lab2](/ml/lab2)
+- [lab3](/ml/lab3)
