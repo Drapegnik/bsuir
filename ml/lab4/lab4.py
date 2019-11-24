@@ -7,9 +7,7 @@
 
 
 import numpy as np
-import pandas as pd
 
-import scipy.optimize as opt
 import scipy.io
 
 import matplotlib.pyplot as plt
@@ -181,31 +179,31 @@ def get_thetas(nn_params, input_layer_size, hidden_layer_size, num_labels):
 def nn_cost_function(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_=0.0):
     theta1, theta2 = get_thetas(nn_params, input_layer_size, hidden_layer_size, num_labels)
     m = y.size
-    
+
     # forward propagation
     a1 = np.hstack([np.ones((m, 1)), X])
     a2 = sigmoid(a1.dot(theta1.T))
     a2 = np.hstack([np.ones((a2.shape[0], 1)), a2])
     a3 = sigmoid(a2.dot(theta2.T))
-    
+
     # cost calculation
     y_matrix = y.reshape(-1)
     y_matrix = np.eye(num_labels)[y_matrix]
     J = calc_cost(a3, y_matrix, m) + get_reg_term(theta1, theta2, m, lambda_)
-    
+
     # back propogation
     delta_3 = a3 - y_matrix
     delta_2 = delta_3.dot(theta2)[:, 1:] * sigmoid_gradient(a1.dot(theta1.T))
     delta1 = delta_2.T.dot(a1)
     delta2 = delta_3.T.dot(a2)
-    
+
     # gradient regularization
     theta1_grad = (1 / m) * delta1
     theta1_grad[:, 1:] = theta1_grad[:, 1:] + (lambda_ / m) * theta1[:, 1:]
     theta2_grad = (1 / m) * delta2
     theta2_grad[:, 1:] = theta2_grad[:, 1:] + (lambda_ / m) * theta2[:, 1:]
     grad = np.concatenate([theta1_grad.ravel(), theta2_grad.ravel()])
-    
+
     return J, grad
 
 
@@ -232,21 +230,21 @@ def test_nn_gradients(lambda_=0.0):
     hidden_layer_size = 5
     num_labels = 3
     m = 5
-    
+
     # generate test data
     theta1 = init_weights_rand(hidden_layer_size - 1, input_layer_size + 1)
     theta2 = init_weights_rand(num_labels - 1, hidden_layer_size + 1)
     X = init_weights_rand(m - 1, input_layer_size)
     X = X.reshape(m, num_labels)
     y = np.arange(1, 1 + m) % num_labels
-    
+
     # unroll parameters
     nn_params = np.concatenate([theta1.ravel(), theta2.ravel()])
     cost_func = lambda p: nn_cost_function(p, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_)
-    
+
     cost, grad = cost_func(nn_params)
     numgrad = compute_numerical_gradient(cost_func, nn_params)
-    
+
     print('Numerical Gradient:\n', numgrad[:5].ravel())
     print('Analytical Gradient:\n', grad[:5].ravel())
     diff = np.linalg.norm(numgrad - grad) / np.linalg.norm(numgrad + grad)
@@ -256,7 +254,7 @@ test_nn_gradients()
 
 
 # > Numerical Gradient and Analytical Gradient should be very similar
-# 
+#
 # > With `e=1e-4` diff should be less than `1e-9`
 
 # ### 12-13. test gradient with L2-regularization
@@ -312,7 +310,7 @@ print(f'Training accuracy: {get_accuracy(theta1, theta2)}%')
 def visualize_data(input, display_rows=5, display_cols=5):
     subplots = display_rows * display_cols
     fig, ax = plt.subplots(display_rows, display_cols, figsize=(10, 10))
-    
+
     for i, axi in enumerate(ax.flat):
         data = np.reshape(input[i], (20, 20), order='F')
         axi.imshow(data, cmap='binary')
@@ -336,12 +334,12 @@ def test_lambda(lambda_):
     initial_theta1 = init_weights_rand(input_layer_size, hidden_layer_size)
     initial_theta2 = init_weights_rand(hidden_layer_size, num_labels)
     initial_nn_params = np.concatenate([initial_theta1.ravel(), initial_theta2.ravel()])
-    
+
     cost_func = lambda p: nn_cost_function(p, input_layer_size, hidden_layer_size, num_labels, x, y, lambda_=lambda_)
     nn_params, costs = nn_gradient_descent(initial_nn_params, cost_func, alpha=0.5, num_iters=5000)
 
     theta1, theta2 = get_thetas(nn_params, input_layer_size, hidden_layer_size, num_labels)
-    
+
     print(f'Lambda:\t{lambda_}')
     print(f'Cost:\t{costs[-1]}')
     print(f'Training accuracy: {get_accuracy(theta1, theta2)}%')
@@ -374,7 +372,3 @@ test_lambda(50)
 # Была рассмотрена модель нейронной сети с 3 слоями. Построены функции стоимости и градиента. Визуализирован скрытый слой сети. С помощью алгоритма градиентного спуска получена точность распознования 93.4%.
 
 # In[ ]:
-
-
-
-
