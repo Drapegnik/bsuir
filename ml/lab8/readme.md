@@ -23,4 +23,4 @@
 
 ### results
 
-[solution + report](/ml/lab8/lab8.ipynb)
+[solution](/ml/lab8/lab8.ipynb) + [report](/ml/lab8/lab8.md)

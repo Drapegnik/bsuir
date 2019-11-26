@@ -48,4 +48,4 @@
 
 ### results
 
-[solution + report](/ml/lab5/lab5.ipynb)
+[solution](/ml/lab5/lab5.ipynb) + [report](/ml/lab5/lab5.md)

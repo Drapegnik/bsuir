@@ -19,4 +19,4 @@
 
 ### results
 
-[solution + report](/ml/lab9/lab9.ipynb)
+[solution](/ml/lab9/lab9.ipynb) + [report](/ml/lab9/lab9.md)
