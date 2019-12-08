@@ -4,6 +4,8 @@
 
 > [Расписание](https://iis.bsuir.by/#/schedule;groupName=858342)
 
+> [Материалы - `bit.ly/bsuir-cloud`](http://bit.ly/bsuir-cloud)
+
 ## semester 1
 
 - [**СТОД** (_Сетевые технологии обработки данных_)](https://github.com/Drapegnik/bsuir/tree/master/networks/tcp)
