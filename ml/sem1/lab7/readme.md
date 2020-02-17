@@ -28,4 +28,4 @@
 
 ### results
 
-[solution](/ml/lab7/lab7.ipynb) + [report](/ml/lab7/lab7.md)
+[solution](/ml/sem1/lab7/lab7.ipynb) + [report](/ml/sem1/lab7/lab7.md)

@@ -18,4 +18,4 @@
 
 ### results
 
-[solution](/ml/lab10/lab10.ipynb) + [report](/ml/lab10/lab10.md)
+[solution](/ml/sem1/lab10/lab10.ipynb) + [report](/ml/sem1/lab10/lab10.md)

@@ -30,4 +30,4 @@
 
 ### results
 
-[solution](/ml/lab4/lab4.ipynb) + [report](/ml/lab4/lab4.md)
+[solution](/ml/sem1/lab4/lab4.ipynb) + [report](/ml/sem1/lab4/lab4.md)
