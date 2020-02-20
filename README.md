@@ -28,4 +28,7 @@
 - [**ИАИ** (_Интеллектуальный анализ информации_)](https://github.com/Drapegnik/bsuir/tree/master/data-mining)
 - **ГиЭВ** (_Генетические и эволюционные вычисления_)
 - [**ОКПО** (_Обеспечение качества программного обеспечения_)](https://github.com/Drapegnik/bsuir/tree/master/sqa)
-- [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml)
+- [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml/sem3)
+
+## semester 4
+- [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml/sem4)
