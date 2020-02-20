@@ -22,4 +22,4 @@
 
 ### results
 
-[solution](/ml/sem1/lab6/lab6.ipynb) + [report](/ml/sem1/lab6/lab6.md)
+[solution](/ml/sem3/lab6/lab6.ipynb) + [report](/ml/sem3/lab6/lab6.md)

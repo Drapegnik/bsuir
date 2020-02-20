@@ -1,7 +1,7 @@
 # lab2
 > Реализация глубокой нейронной сети
 
-- Данные из [lab1](/ml/sem2/lab1)
+- Данные из [lab1](/ml/sem4/lab1)
 
 ## tasks
 
@@ -17,4 +17,4 @@
 
 ### results
 
-[solution](/ml/sem2/lab2/lab2.ipynb) + [report](/ml/sem2/lab2/lab2.md)
+[solution](/ml/sem4/lab2/lab2.ipynb) + [report](/ml/sem4/lab2/lab2.md)

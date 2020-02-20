@@ -23,4 +23,4 @@
 
 ### results
 
-[solution](/ml/sem1/lab1/lab1.ipynb) + [report](/ml/sem1/lab1/lab1.md)
+[solution](/ml/sem3/lab1/lab1.ipynb) + [report](/ml/sem3/lab1/lab1.md)
