@@ -2,3 +2,4 @@ humanize
 numpy
 matplotlib
 requests
+sklearn
