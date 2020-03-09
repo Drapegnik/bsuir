@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 *.pyc
 *.local.sh
+*.local.txt
+.vscode

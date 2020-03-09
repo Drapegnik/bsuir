@@ -1,0 +1,7 @@
+numpy
+tensorflow
+matplotlib
+keras_tqdm
+humanize
+requests
+scipy
