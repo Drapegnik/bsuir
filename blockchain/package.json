@@ -7,17 +7,18 @@
   },
   "scripts": {
     "card-list": "composer card list",
-    "playground": "composer-playground"
+    "playground": "composer-playground",
+    "init": "yo hyperledger-composer:businessnetwork"
   },
   "author": "Ivan Pazhitnykh <ivan.pazhitnykh@gmail.com> (https://github.com/Drapegnik)",
   "license": "MIT",
-  "devDependencies": {
-    "yo": "^3.1.1"
-  },
   "dependencies": {
     "composer-cli": "^0.20.9",
     "composer-playground": "^0.20.9",
     "composer-rest-server": "^0.20.9",
     "generator-hyperledger-composer": "^0.20.9"
+  },
+  "devDependencies": {
+    "yo": "^3.1.1"
   }
 }

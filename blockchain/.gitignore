@@ -1,2 +1,3 @@
 node_modules
 fabric-dev-servers
+*.local.sh
