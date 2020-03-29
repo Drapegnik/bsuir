@@ -31,4 +31,6 @@
 - [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml/sem3)
 
 ## semester 4
+
 - [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml/sem4)
+- [**ТБЧ** (_Технолония Блокчейн_)](https://github.com/Drapegnik/bsuir/tree/master/blockchain)

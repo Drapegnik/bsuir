@@ -1,0 +1,23 @@
+{
+  "name": "hyperledger-composer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.9 <9"
+  },
+  "scripts": {
+    "card-list": "composer card list",
+    "playground": "composer-playground"
+  },
+  "author": "Ivan Pazhitnykh <ivan.pazhitnykh@gmail.com> (https://github.com/Drapegnik)",
+  "license": "MIT",
+  "devDependencies": {
+    "yo": "^3.1.1"
+  },
+  "dependencies": {
+    "composer-cli": "^0.20.9",
+    "composer-playground": "^0.20.9",
+    "composer-rest-server": "^0.20.9",
+    "generator-hyperledger-composer": "^0.20.9"
+  }
+}
