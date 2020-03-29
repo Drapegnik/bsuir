@@ -1,1 +1,6 @@
+dist
+node_modules
+
+.nyc_output
+
 *@tutorial-network.card

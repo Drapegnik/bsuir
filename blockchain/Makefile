@@ -1,6 +1,6 @@
 
 DIR=fabric-dev-servers
-export HL_COMPOSER_CLI=$(PWD)/node_modules/.bin/composer
+export HL_COMPOSER_CLI=$(PWD)/tutorial-network/node_modules/.bin/composer
 export FABRIC_VERSION=hlfv12
 
 download-fabric:
@@ -22,6 +22,3 @@ stop-fabric:
 
 clean: stop-fabric
 	cd $(DIR) && ./teardownFabric.sh
-	
-playground:
-	npm run playground

@@ -1,10 +1,11 @@
 {
-  "engines": {
-    "composer": "^0.20.9"
-  },
   "name": "tutorial-network",
   "version": "0.0.1",
   "description": "hyperledger-composer sample network",
+  "engines": {
+    "node": ">=8.9 <9",
+    "composer": "^0.20.9"
+  },
   "scripts": {
     "start": "composer network start --networkName tutorial-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1",
     "import-card": "composer card import --file admin@tutorial-network.card",
@@ -14,28 +15,34 @@
     "ping": "composer network ping --card admin@tutorial-network",
     "pretest": "npm run lint",
     "lint": "eslint . --fix",
-    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js",
+    "composer": "composer",
+    "composer-rest-server": "composer-rest-server -c admin@tutorial-network -n never -u true -w true",
+    "composer-playground": "composer-playground"
   },
   "keywords": [
     "composer",
     "composer-network"
   ],
-  "author": "Ivan Pazhitnykh",
-  "email": "ivan.pazhitnykh@gmail.com",
+  "author": "Ivan Pazhitnykh <ivan.pazhitnykh@gmail.com> (https://github.com/Drapegnik)",
   "license": "Apache-2.0",
   "devDependencies": {
+    "chai": "latest",
+    "chai-as-promised": "latest",
     "composer-admin": "^0.20.9",
     "composer-cli": "^0.20.9",
     "composer-client": "^0.20.9",
     "composer-common": "^0.20.9",
     "composer-connector-embedded": "^0.20.9",
     "composer-cucumber-steps": "^0.20.9",
-    "chai": "latest",
-    "chai-as-promised": "latest",
+    "composer-playground": "^0.20.9",
+    "composer-rest-server": "^0.20.9",
     "cucumber": "^2.2.0",
     "eslint": "latest",
-    "nyc": "latest",
+    "generator-hyperledger-composer": "^0.20.9",
     "mkdirp": "latest",
-    "mocha": "latest"
+    "mocha": "latest",
+    "nyc": "latest",
+    "yo": "^3.1.1"
   }
 }
