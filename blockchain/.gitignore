@@ -1,3 +1,5 @@
 node_modules
+dist
 fabric-dev-servers
 *.local.sh
+.nyc_output

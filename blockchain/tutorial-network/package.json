@@ -6,9 +6,14 @@
   "version": "0.0.1",
   "description": "hyperledger-composer sample network",
   "scripts": {
+    "start": "composer network start --networkName tutorial-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1",
+    "import-card": "composer card import --file admin@tutorial-network.card",
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/tutorial-network.bna",
+    "deploy": "composer network install --card PeerAdmin@hlfv1 --archiveFile ./dist/tutorial-network.bna",
+    "import": "composer card import --file networkadmin.card",
+    "ping": "composer network ping --card admin@tutorial-network",
     "pretest": "npm run lint",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "test": "nyc mocha -t 0 test/*.js && cucumber-js"
   },
   "keywords": [
