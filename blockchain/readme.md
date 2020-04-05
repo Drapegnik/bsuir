@@ -12,6 +12,10 @@
 
 - `make stop-fabric`
 
+- `make start-fabcar`
+
+- `make clean-fabcar`
+
 ## tutorial-network
 
 - `make server`
@@ -19,3 +23,19 @@
 - `make playground`
 
 - `make client`
+
+## fabcar
+
+> Require [`fabric-samples`](https://github.com/hyperledger/fabric-samples) to be placed in current directory
+
+> Check out [Installation Guide](https://hyperledger-fabric.readthedocs.io/en/latest/install.html)
+
+- `make logs`
+
+- `make admin`
+
+- `make user`
+
+- `make query`
+
+- `make update`
