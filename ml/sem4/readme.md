@@ -11,4 +11,4 @@
 - [lab7](/ml/sem4/lab7) - _Рекуррентные нейронные сети для анализа текста_
 - [lab8](/ml/sem4/lab8) - _Рекуррентные нейронные сети для анализа временных рядов_
 
-> check out `report.md`
+> check out [`report.md`](/ml/sem4/report.md)
