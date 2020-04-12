@@ -1,11 +1,14 @@
 
 DIR=fabric-dev-servers
 FCARDIR=fabric-samples/fabcar
+NETDIR=fabric-samples/first-network
 export HL_COMPOSER_CLI=$(PWD)/tutorial-network/node_modules/.bin/composer
 export FABRIC_VERSION=hlfv12
 
 node:
 	nvm use
+
+##### 1
 
 download-fabric:
 	mkdir -p $(DIR)
@@ -27,8 +30,21 @@ stop-fabric:
 clean: stop-fabric
 	cd $(DIR) && ./teardownFabric.sh
 
+##### 2
+
 start-fabcar:
 	cd $(FCARDIR) && ./startFabric.sh javascript
 
 clean-fabcar:
 	cd $(FCARDIR) && ./networkDown.sh
+
+##### 3
+
+generate-network:
+	cd $(NETDIR) && ./byfn.sh generate
+
+start-network:
+	cd $(NETDIR) && ./byfn.sh up -l javascript
+
+stop-network:
+	cd $(NETDIR) && ./byfn.sh down
