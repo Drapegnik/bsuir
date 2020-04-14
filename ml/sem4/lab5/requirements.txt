@@ -3,5 +3,4 @@ pandas
 matplotlib
 kaggle
 sklearn
-keras_tqdm
 tensorflow

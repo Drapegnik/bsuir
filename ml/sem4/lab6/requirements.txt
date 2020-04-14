@@ -2,6 +2,5 @@ numpy
 pandas
 matplotlib
 kaggle
-keras_tqdm
 tensorflow
 sklearn
