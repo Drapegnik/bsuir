@@ -94,7 +94,7 @@ device
 class Network(nn.Module):
     def __init__(self):
         super(Network, self).__init__()
-        
+
         self.features = nn.Sequential(
             nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(32),
@@ -103,19 +103,19 @@ class Network(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
         )
-        
+
         self.classifier = nn.Sequential(
             nn.Linear(64 * 28 * 28, 512),
             nn.Linear(512, output_size),
         )
-        
+
 
     def forward(self, x):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
         return x
-    
+
 network = Network()
 network.to(device)
 ```
@@ -151,7 +151,7 @@ class ImageDataset(Dataset):
     def __init__(self, _data):
         print(len(_data))
         self.data = _data
-        
+
     def __len__(self):
         return len(self.data)
 
@@ -262,7 +262,7 @@ def _num_flat_features(x):
 class Network2(nn.Module):
     def __init__(self):
         super(Network2, self).__init__()
-        
+
         self.features = nn.Sequential(
             nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(32),
@@ -273,12 +273,12 @@ class Network2(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2)
         )
-        
+
         self.classifier = nn.Sequential(
             nn.Linear(3136, 512),
             nn.Linear(512, output_size),
         )
-    
+
     def num_flat_features(self, x):
         return _num_flat_features(x)
 
@@ -353,7 +353,7 @@ class LeNet(nn.Module):
         self.fc1 = nn.Linear(400, 120)
         self.fc2 = nn.Linear(120, 84)
         self.fc3 = nn.Linear(84, output_size)
-    
+
     def num_flat_features(self, x):
         return _num_flat_features(x)
 
@@ -425,4 +425,3 @@ plt.show()
 
 
 ![png](./out/output_26_0.png)
-

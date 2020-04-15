@@ -165,7 +165,7 @@ def train(_net, _opt, _x, _y, epochs):
             loss = loss_func(predict, y_i)
             loss.backward()
             _opt.step()
-            
+
             e_loss = loss.data
         loss_data.append(e_loss)
         pbar.set_description(f'[e#{e} loss: {e_loss:.3f}]')
@@ -232,15 +232,15 @@ d_network = nn.Sequential(
     nn.BatchNorm1d(num_features=900),
     nn.LeakyReLU(),
     nn.Dropout(0.25),
-    
+
     nn.Linear(900, 900),
     nn.LeakyReLU(),
     nn.Dropout(0.25),
-    
+
     nn.Linear(900, 500),
     nn.LeakyReLU(),
     nn.Dropout(0.25),
-    
+
     nn.Linear(500, 10),
     nn.LogSoftmax(dim=1)
 )
@@ -322,14 +322,14 @@ for e in range(epochs):
     for i in range(0, n - batch_size, batch_size):
         x_i = x_norm_tensor[i:i + batch_size].to(device)
         y_i = y_norm_tensor[i:i + batch_size].to(device)
-        
+
         optimizer3.zero_grad()
         predict = d_network(x_i)
-        
+
         loss = loss_func(predict, y_i)
         loss.backward()
         optimizer3.step()
-        
+
         if i % 1000 == 0:
             loss_data.append(loss.data)
     accuracy = get_accuracy(d_network, True)
@@ -373,4 +373,3 @@ print(f'Accuracy:\t{get_accuracy(d_network, True):.2%}')
 ```
 
     Accuracy:	92.47%
-

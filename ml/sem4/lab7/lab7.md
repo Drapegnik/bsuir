@@ -98,12 +98,12 @@ from tensorflow.keras.layers import Dense, Dropout, Embedding, LSTM, Bidirection
 
 def build_model(emb=Embedding(encoder.vocab_size, 64)):
     model = Sequential()
-    
+
     model.add(emb)
     model.add(Bidirectional(LSTM(64)))
     model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
-    
+
     return model
 ```
 
@@ -353,14 +353,14 @@ from tensorflow.keras.layers import GRU
 
 def build_model():
     model = Sequential()
-    
+
     model.add(Embedding(VOCAB_SIZE, 100))
     model.add(Bidirectional(GRU(64, return_sequences=True), merge_mode='concat'))
     model.add(Bidirectional(GRU(64), merge_mode='concat'))
     model.add(Dense(64, activation='elu'))
     model.add(Dropout(0.5))
     model.add(Dense(1))
-    
+
     return model
 ```
 
@@ -434,4 +434,3 @@ plot(history)
 
 
 ![png](./out/output_32_0.png)
-
