@@ -96,11 +96,6 @@ stats
     total: 18726
     balanced: 1872.6
     real:
-
-
-
-
-
     {'A': 1873,
      'B': 1873,
      'C': 1873,
@@ -157,11 +152,6 @@ X.shape, y.size
 ```
 
     duplicates:	2.64%
-
-
-
-
-
     ((18232, 28, 28), 18232)
 
 
@@ -176,9 +166,6 @@ X_test, X_val, y_test, y_val = train_test_split(X_temp, y_temp, train_size=0.7)
 samples_size = [y_train.size, y_test.size, y_val.size]
 samples_size, sum(samples_size)
 ```
-
-
-
 
     ([12762, 3828, 1642], 18232)
 

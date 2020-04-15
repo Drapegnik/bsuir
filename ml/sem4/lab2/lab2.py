@@ -12,12 +12,12 @@ import matplotlib.pyplot as plt
 
 # ### 1.1 read lab1 data
 
-# In[8]:
+# In[2]:
 
 
 import os
 
-DATA_PATH = '../lab1/data/notMNIST_small'
+DATA_PATH = "../lab1/data/notMNIST_small"
 
 letters = sorted(os.listdir(DATA_PATH))
 
@@ -27,76 +27,76 @@ X = []
 y = []
 
 for l_id, letter in enumerate(letters):
-    l_dir = f'{DATA_PATH}/{letter}'
+    l_dir = f"{DATA_PATH}/{letter}"
     for image in os.listdir(l_dir):
         try:
-            img = plt.imread(f'{l_dir}/{image}')
+            img = plt.imread(f"{l_dir}/{image}")
             X.append(img.reshape(-1, image_width * image_width)[0])
             y.append(l_id)
         except:
             continue
 
 
-# In[10]:
+# In[3]:
 
 
 len(X), len(y)
 
 
-# In[11]:
+# In[4]:
 
 
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, train_size=0.8)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+len(X_train), len(X_test)
 
 
 # ### 1.2 build network
 
-# In[79]:
+# In[5]:
 
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
-# In[156]:
+# In[6]:
 
 
-sizes = [784, 1200, 1200, 1200, 400, 100, 10]
-
-epochs = 400
-step = 512
+epochs = 100
+batch_size = 512
 learning_rate = 1e-3
 
 mu = np.mean(X)
 std = np.std(X)
 
 
-# In[87]:
+# In[52]:
 
 
-class Network(nn.Module):
-    def __init__(self):
-        super(Network, self).__init__()
-        for i in range(1, len(sizes)):
-            l = nn.Linear(sizes[i - 1], sizes[i])
-            setattr(self, f'l{i}', l)
-            if i != len(sizes) - 1:
-                setattr(self, f'relu{i}', nn.LeakyReLU())
+network = nn.Sequential(
+    nn.Linear(784, 900),
+    nn.LeakyReLU(),
+    nn.Linear(900, 900),
+    nn.LeakyReLU(),
+    nn.Linear(900, 500),
+    nn.LeakyReLU(),
+    nn.Linear(500, 10),
+)
 
-    def forward(self, x):
-        for l in network.children():
-            x = l(x)
-        return F.log_softmax(x, dim=1)
-
-network = Network()
-devide = torch.device('cpu')
-network.to(devide)
+device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
+device
 
 
-# In[88]:
+# In[53]:
+
+
+network.to(device)
+
+
+# In[54]:
 
 
 import torch.optim as optim
@@ -107,50 +107,69 @@ loss_func = nn.CrossEntropyLoss()
 x_tensor = torch.FloatTensor(X_train)
 y_tensor = torch.LongTensor(y_train)
 
+x_test_ten = torch.FloatTensor(X_test).to(device)
+y_test_ten = torch.LongTensor(y_test).to(device)
+
 n = len(X_train)
 n
 
 
-# In[89]:
+# In[105]:
 
 
-loss_data = []
-
-for e in range(epochs):
-    for i in range(0, n - step, step):
-        x_i = x_tensor[i:i + step].to(devide)
-        y_i = y_tensor[i:i + step].to(devide)
-
-        optimizer.zero_grad()
-        predict = network(x_i)
-
-        loss = loss_func(predict, y_i)
-        loss.backward()
-        optimizer.step()
-
-        if i % 1000 == 0:
-            loss_data.append(loss.data)
-    if e > 0 and e % 10 == 0:
-        print(f'Epoch{e}:\tloss: {loss.data:.6f}')
+from tqdm import tqdm
 
 
-# In[99]:
+def train(_net, _opt, _x, _y, epochs):
+    loss_data = []
+
+    pbar = tqdm(range(epochs))
+    for e in pbar:
+        e_loss = None
+        for i in range(0, n - batch_size, batch_size):
+            x_i = _x[i : i + batch_size].to(device)
+            y_i = _y[i : i + batch_size].to(device)
+
+            _opt.zero_grad()
+            predict = _net(x_i)
+
+            loss = loss_func(predict, y_i)
+            loss.backward()
+            _opt.step()
+
+            e_loss = loss.data
+        loss_data.append(e_loss)
+        pbar.set_description(f"[e#{e} loss: {e_loss:.3f}]")
+    return loss_data
+
+
+# In[56]:
+
+
+loss_history = train(network, optimizer, x_tensor, y_tensor)
+
+
+# In[58]:
 
 
 def draw(data):
     plt.figure(figsize=(8, 6))
     plt.plot(data)
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
     plt.show()
 
-network.eval();
-draw(loss_data)
+
+network.eval()
+draw(loss_history)
 
 
 # ### 2. accuracy
 
-# In[160]:
+# In[69]:
+
+
+from sklearn.metrics import accuracy_score
 
 
 def get_accuracy(net, normilize=False):
@@ -162,155 +181,117 @@ def get_accuracy(net, normilize=False):
     _, max_index = torch.max(test_predict, 1)
     y_predict = max_index.tolist()
 
-
     return accuracy_score(y_predict, y_test)
 
+
 test_score = get_accuracy(network)
-print(f'score:\t{test_score * 100:.2f}%')
+print(f"Accuracy:\t{test_score:.2%}")
 
 
-# > `91.1%` vs `86.7%` with logistic regression
+# > `92%` vs `86.7%` with logistic regression
 
 # ### 3. regularization & dropout vs overfitting
 
-# In[167]:
+# In[147]:
 
 
-epochs = 100
+d_network = nn.Sequential(
+    nn.Linear(784, 900),
+    nn.BatchNorm1d(num_features=900),
+    nn.LeakyReLU(),
+    nn.Dropout(0.25),
+    nn.Linear(900, 900),
+    nn.LeakyReLU(),
+    nn.Dropout(0.25),
+    nn.Linear(900, 500),
+    nn.LeakyReLU(),
+    nn.Dropout(0.25),
+    nn.Linear(500, 10),
+    nn.LogSoftmax(dim=1),
+)
 
-
-# In[174]:
-
-
-class DropoutNetwork(nn.Module):
-    def __init__(self):
-        super(DropoutNetwork, self).__init__()
-        self.l1 = nn.Linear(sizes[0], sizes[1])
-        self.bn1 = nn.BatchNorm1d(num_features=sizes[1])
-        self.relu1 = nn.LeakyReLU()
-        self.drop1 = nn.Dropout(0.25)
-        self.l2 = nn.Linear(sizes[1], sizes[2])
-        self.relu2 = nn.LeakyReLU()
-        self.drop2 = nn.Dropout(0.5)
-        self.l3 = nn.Linear(sizes[2], sizes[3])
-        self.relu3 = nn.LeakyReLU()
-        self.drop3 = nn.Dropout(0.25)
-        self.l4 = nn.Linear(sizes[3], sizes[4])
-        self.relu4 = nn.LeakyReLU()
-        self.drop4 = nn.Dropout(0.5)
-        self.l5 = nn.Linear(sizes[4], sizes[5])
-        self.relu5 = nn.LeakyReLU()
-        self.l6 = nn.Linear(sizes[5], sizes[6])
-
-    def forward(self, x):
-        x = self.bn1(self.l1(x))
-        x = F.relu(x)
-        x = self.relu1(x)
-        x = self.drop1(x)
-        x = self.l2(x)
-        x = self.relu2(x)
-        x = self.drop2(x)
-        x = self.l3(x)
-        x = self.relu3(x)
-        x = self.drop3(x)
-        x = self.l4(x)
-        x = self.relu4(x)
-        x = self.drop4(x)
-        x = self.l5(x)
-        x = self.relu5(x)
-        x = self.l6(x)
-        return F.log_softmax(x, dim=0)
-
-d_network = DropoutNetwork()
 d_network.to(device)
 
 
-# In[175]:
+# In[141]:
 
 
 x_norm_tensor = torch.FloatTensor((X_train - mu) / std)
 y_norm_tensor = torch.LongTensor(y_train)
 
-optimizer = optim.Adagrad(d_network.parameters(), lr=learning_rate)
+optimizer2 = optim.Adagrad(d_network.parameters(), lr=learning_rate)
 
 
-# In[150]:
+# In[142]:
 
 
-norm_loss_data = []
-
-for e in range(epochs):
-    for i in range(0, n - step, step):
-        x_i = x_norm_tensor[i:i + step].to(devide)
-        y_i = y_norm_tensor[i:i + step].to(devide)
-
-        optimizer.zero_grad()
-        predict = d_network(x_i)
-
-        loss = loss_func(predict, y_i)
-        loss.backward()
-        optimizer.step()
-
-        if i % 1000 == 0:
-            norm_loss_data.append(loss.data)
-    if e % 10 == 0:
-        print(f'Epoch{e}:\tloss: {loss.data:.6f}')
+norm_loss_history = train(d_network, optimizer2, x_tensor, y_tensor, 200)
 
 
-# In[164]:
+# In[143]:
 
 
-network.eval();
-draw(norm_loss_data)
+d_network.eval()
+draw(norm_loss_history)
+
+
+# In[144]:
+
+
+print(f"Accuracy:\t{get_accuracy(d_network):.2%}")
 
 
 # ### 4. dynamic learning rate
 
-# In[178]:
+# In[148]:
 
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-epochs = 40
+epochs = 100
 learning_rate = 0.1
-optimizer = torch.optim.SGD(d_network.parameters(), lr=learning_rate, momentum=0.9, nesterov=True)
-scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=0, verbose=True)
+optimizer3 = torch.optim.SGD(
+    d_network.parameters(), lr=learning_rate, momentum=0.9, nesterov=True
+)
+scheduler = ReduceLROnPlateau(
+    optimizer3, mode="max", factor=0.1, patience=0, verbose=True
+)
 
 
-# In[179]:
+# In[149]:
 
 
 loss_data = []
 
 for e in range(epochs):
-    for i in range(0, n - step, step):
-        x_i = x_norm_tensor[i:i + step].to(devide)
-        y_i = y_norm_tensor[i:i + step].to(devide)
+    for i in range(0, n - batch_size, batch_size):
+        x_i = x_norm_tensor[i : i + batch_size].to(device)
+        y_i = y_norm_tensor[i : i + batch_size].to(device)
 
-        optimizer.zero_grad()
-        predict = xd(x_i)
+        optimizer3.zero_grad()
+        predict = d_network(x_i)
 
         loss = loss_func(predict, y_i)
         loss.backward()
-        optimizer.step()
+        optimizer3.step()
 
         if i % 1000 == 0:
             loss_data.append(loss.data)
     accuracy = get_accuracy(d_network, True)
     if e % 10 == 0:
-        print(f'Epoch#{e}:\tloss: {loss.data:.6f}\taccuracy: {accuracy:.6f}')
+        print(f"Epoch\t{e}:\tloss: {loss.data:.3f}\taccuracy: {accuracy:.3f}")
     scheduler.step(accuracy)
 
 
-# In[188]:
+# In[150]:
 
 
 draw(loss_data)
-d_network.eval();
+d_network.eval()
 
 
-# In[189]:
+# In[151]:
 
 
-test_score = get_accuracy(d_network, True)
-print(f'score:\t{test_score * 100:.2f}%')
+print(f"Accuracy:\t{get_accuracy(d_network, True):.2%}")
+
