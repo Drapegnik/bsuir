@@ -4,4 +4,3 @@ pandas
 torch
 torchvision
 tqdm
-sklearn

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 DATA_DIR=data
-AUTHOR=datamunge
-DATASET_NAME=sign-language-mnist
+AUTHOR=robervalt
+DATASET_NAME=sunspots
 DATASET_PATH="$DATA_DIR/$DATASET_NAME"
 
 mkdir -p "$DATA_DIR"
