@@ -5,3 +5,6 @@ keras_tqdm
 humanize
 requests
 scipy
+pyTelegramBotAPI
+python-dotenv
+opencv-python-headless

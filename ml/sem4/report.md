@@ -1158,7 +1158,7 @@ show_images(X_train, y_train)
 ```
 
 
-![png](output_6_0.png)
+![png](./lab4/out/output_6_0.png)
 
 
 ### 1. build network
@@ -1320,7 +1320,7 @@ plot(history)
 ```
 
 
-![png](output_11_0.png)
+![png](./lab4/out/output_11_0.png)
 
 
 ### 2. train on svhn data
@@ -1388,7 +1388,7 @@ show_images(X_train, y_train, 1)
 ```
 
 
-![png](output_17_0.png)
+![png](./lab4/out/output_17_0.png)
 
 
 
@@ -1525,7 +1525,7 @@ plot(history)
 ```
 
 
-![png](output_22_0.png)
+![png](./lab4/out/output_22_0.png)
 
 
 
@@ -1560,7 +1560,7 @@ for ax in axs:
 ```
 
 
-![png](output_26_0.png)
+![png](./lab4/out/output_26_0.png)
 
 
 ### 3. save model
@@ -1569,6 +1569,40 @@ for ax in axs:
 ```python
 model.save(f'{DATA_DIR}/svhn_model.h5', save_format='h5')
 ```
+
+### 4. telegram bot
+
+
+```python
+from tensorflow.keras.models import load_model
+
+model = load_model('data/svhn_model.h5')
+
+def download_image(file_path):
+    url = f'{BASE_FILES_URL}/{file_path}'
+    with request.urlopen(url) as res:
+        image = np.asarray(bytearray(res.read()), dtype='uint8')
+        image = cv.imdecode(image, cv.IMREAD_COLOR)
+        image = cv.resize(image, IMAGE_SIZE)
+        return image
+
+
+def predict(image):
+    X = np.asarray(image).astype('float32')
+    X = X.reshape(1, 32, 32, 3)
+    predictions = model.predict_classes(X)
+    return predictions[0] + 1
+```
+
+<table>
+<tr>
+    <td><img src="./lab4/out/IMG_1777.jpg" width="320px"/></td>
+    <td><img src="./lab4/out/IMG_1778.jpg" width="320px"/></td>
+    <td><img src="./lab4/out/IMG_1779.jpg" width="320px"/></td>
+</tr>
+</table>
+
+---------------------------
 # lab5
 > Применение сверточных нейронных сетей (бинарная классификация)
 
