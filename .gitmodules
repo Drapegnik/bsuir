@@ -4,3 +4,6 @@
 [submodule "oop/oop-paint"]
 	path = oop/oop-paint
 	url = https://github.com/Drapegnik/oop-paint.git
+[submodule "mobile/discounts-service"]
+	path = mobile/discounts-service
+	url = https://github.com/Drapegnik/discounts-service.git
