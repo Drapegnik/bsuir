@@ -4,6 +4,8 @@
 2. [Writing Your First Application](https://hyperledger-fabric.readthedocs.io/en/latest/write_first_app.html#writing-your-first-application)
 3. [Building Your First Network](https://hyperledger-fabric.readthedocs.io/en/latest/build_network.html)
 
+- [docs/](/blockchain/docs)
+
 ## fabric scripts
 
 - `make start-fabric`
