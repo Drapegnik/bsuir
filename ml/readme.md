@@ -6,4 +6,4 @@
 - [sem4](/ml/sem4)
 - [docs/](/ml/docs)
 - [notes/](/ml/notes)
-- [notes.md](/ml/help.md)
+- [help.md](/ml/help.md)

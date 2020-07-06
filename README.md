@@ -35,3 +35,4 @@
 - [**МО** (_Машинное обучение_)](https://github.com/Drapegnik/bsuir/tree/master/ml/sem4)
 - [**ТБЧ** (_Технолония Блокчейн_)](https://github.com/Drapegnik/bsuir/tree/master/blockchain)
 - [**ХДиOLAPC** (_Хранилища данных и OLAP-системы_)](https://github.com/Drapegnik/bsuir/tree/master/olaps)
+- [**ИнЯз** (_Иностранный Язык (Английский)_)](https://github.com/Drapegnik/bsuir/tree/master/english)
